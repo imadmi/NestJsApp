@@ -8,3 +8,8 @@ async function bootstrap() {
 bootstrap();
 
 // http Get -> controller -> service -> db
+
+// nest g module ningas
+// nest g controller ningas
+// nest g service ningas
+// nest g resource ningas
