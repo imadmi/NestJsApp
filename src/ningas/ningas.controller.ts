@@ -9,18 +9,31 @@ import {
   Body,
 } from '@nestjs/common';
 import { CreateNingasDto } from './create-ninga.dto';
+import { NingasService } from './ningas.service';
 
 @Controller('ningas')
 export class NingasController {
+  constructor(private readonly ningasService: NingasService) {}
+
   @Get()
-  // Get http://localhost:3001/ningas?type=fast
-  getNingas(@Query('type') type: string) {
-    return type == 'fast' ? 'Fast ningas' : 'Slow ningas';
+  // Get http://localhost:3001/ningas?name=Naruto
+  getNingas(@Query('name') name: string) {
+    return name
+      ? this.ningasService.findOne(name)
+      : this.ningasService.findAll();
   }
 
   @Get(':id')
   getNingasById(@Param('id') id: string) {
     return id;
+    // try 
+    // {
+    //     throw new Error('Method not implemented.');
+    // }
+    // catch (error) 
+    // {
+    //     return error.message;
+    // }
   }
 
   @Post()
