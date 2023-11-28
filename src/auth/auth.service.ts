@@ -5,21 +5,17 @@ import * as argon from 'argon2';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma : PrismaService) {}
+  constructor(private prisma: PrismaService) {}
   async signin(dto: AuthDto) {
-
     const hash = await argon.hash(dto.password);
-    
-    console.log("hada hash " , hash);
 
     const user = await this.prisma.user.create({
       data: {
-        email : dto.email,
+        email: dto.email,
         hash,
       },
     });
 
-    console.log("hada useer " , user);
     return user;
   }
 
@@ -27,3 +23,12 @@ export class AuthService {
     return 'signup';
   }
 }
+
+```c
+npx @nestjs/cli new backEnd
+```
+
+And I installed Next Js using this commad
+```c
+npx create-next-app frontend
+```
